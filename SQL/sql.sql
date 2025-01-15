@@ -1,3 +1,4 @@
+-- Active: 1734948296838@@127.0.0.1@3306@youdemy
 CREATE DATABASE Youdemy;
 USE Youdemy;
 

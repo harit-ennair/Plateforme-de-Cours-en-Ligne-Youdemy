@@ -1,0 +1,15 @@
+{
+    "name": "youcode/youdemy",
+    "autoload": {
+        "psr-4": {
+            "Youcode\\youdemy\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "harit",
+            "email": "harit@gmail.com"
+        }
+    ],
+    "require": {}
+}
