@@ -1,0 +1,29 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table, .table th, .table td {
+    border: 1px solid black;
+}
+.table th, .table td {
+    padding: 8px;
+    text-align: left;
+}
+.table-header {
+    background-color: #f2f2f2;
+}
+.active {
+    color: green;
+    font-weight: bold;
+}
+.inactive {
+    color: red;
+    font-weight: bold;
+}
+.act{
+  
+    color:rgb(0, 118, 235);
+}
+.act:hover{
+    color: rgb(2, 86, 170) ;
+}
