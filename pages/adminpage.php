@@ -4,6 +4,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT'].'/youdemy/vendor/autoload.php';
 
 use Youcode\youdemy\database;
+use Youcode\youdemy\admin;
 
 $ndb = new database;
 $pdo = $ndb->getConnection();
@@ -13,6 +14,16 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"]!=="admin") {
 header("location:../index.php");
 exit();
 } 
+
+
+if(isset($_GET['user_id']) && isset($_GET['activety'])){
+  $ndb = new database;
+  $pdo = $ndb->getConnection();
+  $descative = new admin($pdo);
+  $descative->updateactivety($_GET['user_id'],$_GET['activety']);
+  header('location:http://localhost/youdemy/pages/adminpage.php');
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -52,34 +63,27 @@ exit();
         <span class="logo_name">D-CLIC</span>
       </div>
       <ul class="nav-links">
+        
         <li>
-          <a href="adminpaje.php" >
-            <i class="bx bx-grid-alt"></i>
-            <span class="links_name">Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="Produit.php">
-            <i class="bx bx-box"></i>
-            <span class="links_name">Produit</span>
-          </a>
-        </li>
-        <li>
-          <a href="Commandes.php">
+          <a href="adminstats.php">
             <i class="bx bx-list-ul"></i>
-            <span class="links_name">Commandes</span>
+            <span class="links_name">statistics</span>
           </a>
         </li>
 
-        <li>
-          <a href="Stock.php">
-            <i class="bx bx-coin-stack"></i>
-            <span class="links_name">Stock</span>
-          </a>
-        </li>
 
         <li>
-          <a href="Utilisateur.php"class="active">
+          <a href="admintag.php" >
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">tag</span>
+          </a>
+        </li>
+ 
+
+
+
+        <li>
+          <a href="adminpage.php"class="active">
             <i class="bx bx-user"></i>
             <span class="links_name">Utilisateur</span>
           </a>
@@ -87,7 +91,7 @@ exit();
 
 
         <li class="log_out">
-          <a href="http://localhost/CmdCraft/">
+          <a href="http://localhost/youdemy/">
             <i class="bx bx-log-out"></i>
             <span class="links_name">Déconnexion</span>
           </a>
@@ -125,11 +129,12 @@ exit();
                 
                                 <?php
           
-                                use Youcode\youdemy\admin;
+                          
                                 $ndb = new database;
                                 $pdo = $ndb->getConnection();
                                 $acc = new admin($pdo);  
                                 $acc->affichage();  
+                            
                                 ?>
 
 

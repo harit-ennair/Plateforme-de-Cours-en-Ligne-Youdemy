@@ -73,16 +73,21 @@ public function loginFunc($email,$password){
         
         
         
-        if ($myuser["activety"]=="suspended") {
+        if ($myuser["status"]=="suspended") {
             echo '<script>alert("Your Account is Not Active Anymore")</script>';
             return;
-        }
+        }else if($myuser["status"]=="panding"){
+            echo '<script>alert("Your Account is on progres")</script>';
+        }else{
+
+
         if ($myuser["role"]=="admin") {
-            header("location:./pages/adminpage.php");
+            header("location:./pages/adminstats.php");
         }else if($myuser["role"]=="teacher"){
             header("location:./pages/.php");
         }else{
             header("location:./pages/.php");
+        }
         }
     }
 

@@ -26,19 +26,19 @@ class admin extends user{
             echo '<td class="column-email">' . $user['status'] . '</td>';
             if ($user['status'] == 'active') {
                 echo '<td class="column-status active">
-                    <a href="../src/admin.php?user_id=' . $user['user_id'] . '&activety=suspended" class="act" >Disactive</a>
-                    <a href="../src/admin.php?user_id=' . $user['user_id'] . '&activety=panding" class="act">panding</a>
+                    <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=suspended" class="act" >Disactive</a>
+                    <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=panding" class="act">panding</a>
     
                 </td>'; 
             } else if ($user['status'] == 'suspended') {
                 echo '<td>
-                    <a href="../src/admin.php?user_id=' . $user['user_id'] . '&activety=active" class="act">Active</a>
-                    <a href="../src/admin.php?user_id=' . $user['user_id'] . '&activety=panding" class="act">panding</a>
+                    <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=active" class="act">Active</a>
+                    <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=panding" class="act">panding</a>
                 </td>';
             }else  {
                 echo '<td>
-                    <a href="../src/admin.php?user_id=' . $user['user_id'] . '&activety=suspended" class="act" >Disactive</a>
-                    <a href="../src/admin.php?user_id=' . $user['user_id'] . '&activety=active" class="act">Active</a>
+                    <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=suspended" class="act" >Disactive</a>
+                    <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=active" class="act">Active</a>
                 </td>';
             }
             echo '</tr>';
@@ -56,20 +56,13 @@ class admin extends user{
             ':user_id' => $userId
         ]);
     
+
     
     }
     
     
     
     }
-    if(isset($_GET['user_id']) && isset($_GET['activety'])){
-        $ndb = new database;
-        $pdo = $ndb->getConnection();
-        $descative = new admin($pdo);
-        $descative->updateactivety($_GET['user_id'],$_GET['activety']);
-        header('location:http://localhost/youdemy/pages/adminpage.php');
-    }
-    
     
     
     
