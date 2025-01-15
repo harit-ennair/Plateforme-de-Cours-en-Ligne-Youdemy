@@ -63,7 +63,7 @@ exit();
         <li>
           <a href="admintag.php">
             <i class="bx bx-coin-stack"></i>
-            <span class="links_name">tag</span>
+            <span class="links_name">tags te categories</span>
           </a>
         </li>
 

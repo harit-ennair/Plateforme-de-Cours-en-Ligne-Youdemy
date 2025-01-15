@@ -75,7 +75,7 @@ if(isset($_GET['user_id']) && isset($_GET['activety'])){
         <li>
           <a href="admintag.php" >
             <i class="bx bx-grid-alt"></i>
-            <span class="links_name">tag</span>
+            <span class="links_name">tags te categories</span>
           </a>
         </li>
  
