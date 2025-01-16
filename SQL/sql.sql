@@ -10,7 +10,22 @@ CREATE TABLE Users (
     password_hash VARCHAR(255) NOT NULL,
     role ENUM('student', 'teacher', 'admin') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('active', 'suspended') DEFAULT 'active'
+    status ENUM('active', 'suspended', 'panding') DEFAULT 'active'
+    DELIMITER //
+
+CREATE TRIGGER set_default_status BEFORE INSERT ON Users
+FOR EACH ROW
+BEGIN
+    IF NEW.role = 'teacher' THEN
+        SET NEW.status = 'panding';
+    ELSE
+        SET NEW.status = 'active';
+    END IF;
+END;
+
+//
+
+DELIMITER ;
 );
 
 -- Table des catégories de cours
@@ -39,6 +54,7 @@ CREATE TABLE Courses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (teacher_id) REFERENCES Users(user_id),
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+    content_type ENUM('PDF', 'Video')
 );
 
 -- Table de relation many-to-many entre les cours et les tags
