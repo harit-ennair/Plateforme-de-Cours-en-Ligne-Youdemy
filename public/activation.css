@@ -27,3 +27,148 @@
 .act:hover{
     color: rgb(2, 86, 170) ;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* General form styling */
+form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Label styling */
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+  }
+  
+  /* Input and textarea styling */
+  input[type="name"],
+  input[type="text"],
+  textarea,
+  select,
+  input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  input[type="file"] {
+    padding: 6px;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Styling for the hidden input field */
+  input[type="hidden"] {
+    display: none;
+  }
+
+  /* Styling for checkboxes container */
+.checkbox-container {
+    margin-bottom: 20px;
+    
+}
+/* Styling for checkboxes container */
+.checkbox-container {
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox to align checkboxes horizontally */
+    flex-wrap: wrap; /* Allow the checkboxes to wrap to the next line if necessary */
+}
+
+/* Styling for checkboxes */
+input[type="checkbox"] {
+    margin-right: 20px; /* Space between checkboxes */
+    transform: scale(1.2); /* Slightly enlarge the checkboxes */
+    margin-bottom: 27px; /* Space below checkboxes (applies when wrapping happens) */
+    vertical-align: middle; /* Align the checkbox with the label */
+}
+
+/* Styling for checkbox labels */
+input[type="checkbox"] + label {
+    font-size: 14px;
+    color: #333;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 20px; /* Space between label and checkbox */
+    vertical-align: middle; /* Align the label with the checkbox */
+}
+
+
+/* Style for form elements */
+form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General styling for form labels */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+
+  
+  /* Responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    form {
+      width: 90%;
+    }
+  
+    label,
+    input[type="text"],
+    textarea,
+    select,
+    input[type="file"] {
+      font-size: 14px;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  

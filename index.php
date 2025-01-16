@@ -2,7 +2,9 @@
 include $_SERVER['DOCUMENT_ROOT'].'/Youdemy/vendor/autoload.php';
 
 use Youcode\youdemy\database;
-use Youcode\youdemy\user;
+// use Youcode\youdemy\user;
+use Youcode\youdemy\teacher;
+use Youcode\youdemy\student;
 
 
 
@@ -15,7 +17,12 @@ if (isset($_POST["submitc"])) {
     $password = $_POST["password"];
     $role = $_POST["role"];
 
-    $acc = new user($pdo);
+    if($role == 'student'){
+     $acc = new student($pdo);
+    }else{
+        $acc = new teacher($pdo);
+    }
+
     $acc->registerFunc($username, $email, $password, $role);
    
 }
@@ -25,7 +32,11 @@ if (isset($_POST['submita'])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $acc = new user($pdo); 
+    if($role == 'student'){
+        $acc = new student($pdo);
+       }else{
+           $acc = new teacher($pdo);
+       }
     $acc->loginFunc($email, $password);  
 }
 ?>

@@ -6,7 +6,7 @@ use Youcode\youdemy\database;
 
 
  
-class user
+abstract class user
 {
 
 protected $user_id;
@@ -84,16 +84,14 @@ public function loginFunc($email,$password){
         if ($myuser["role"]=="admin") {
             header("location:./pages/adminstats.php");
         }else if($myuser["role"]=="teacher"){
-            header("location:./pages/.php");
+            header("location:./pages/teacher.php");
         }else{
             header("location:./pages/.php");
         }
         }
     }
 
-
 }
-
 
 }
 

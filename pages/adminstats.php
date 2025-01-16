@@ -1,44 +1,45 @@
-<?php 
+<?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT'].'/youdemy/vendor/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/youdemy/vendor/autoload.php';
 
 use Youcode\youdemy\database;
 
 $ndb = new database;
 $pdo = $ndb->getConnection();
 
-if (!isset($_SESSION["user_id"]) || $_SESSION["role"]!=="admin") {
+if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "admin") {
 
-header("location:../index.php");
-exit();
-} 
+  header("location:../index.php");
+  exit();
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../public/cssadmine.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../public/cssadmine.css">
 
 
 </head>
+
 <body>
-    
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
+
+  <!DOCTYPE html>
+  <html lang="fr" dir="ltr">
+
   <head>
     <meta charset="UTF-8" />
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css" />
     <!-- Boxicons CDN Link -->
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
+
   <body>
 
 
@@ -52,20 +53,21 @@ exit();
       </div>
       <ul class="nav-links">
 
- 
+
         <li>
-          <a href="adminstats.php"class="active">
+          <a href="adminstats.php" class="active">
             <i class="bx bx-list-ul"></i>
             <span class="links_name">statistics</span>
           </a>
         </li>
 
         <li>
-          <a href="admintag.php">
-            <i class="bx bx-coin-stack"></i>
+          <a href="admintag.php" >
+            <i class="bx bx-grid-alt"></i>
             <span class="links_name">tags te categories</span>
           </a>
         </li>
+ 
 
         <li>
           <a href="adminpage.php">
@@ -89,7 +91,7 @@ exit();
           <i class="bx bx-menu sidebarBtn"></i>
           <span class="dashboard">Dashboard</span>
         </div>
-    
+
 
       </nav>
 
@@ -208,28 +210,28 @@ exit();
               </li>
               <li>
                 <a href="#">
-  
+
                   <span class="product">PC</span>
                 </a>
                 <span class="price">1567 F</span>
               </li>
               <li>
                 <a href="#">
-   
+
                   <span class="product">Chaussure</span>
                 </a>
                 <span class="price">1234 F</span>
               </li>
               <li>
                 <a href="#">
-    
+
                   <span class="product">Pantalon</span>
                 </a>
                 <span class="price">2312 F</span>
               </li>
               <li>
                 <a href="#">
-        
+
                   <span class="product">Samsung</span>
                 </a>
                 <span class="price">1456 F</span>
@@ -244,14 +246,14 @@ exit();
 
               <li>
                 <a href="#">
-     
+
                   <span class="product">iPhone X</span>
                 </a>
                 <span class="price">2345 F</span>
               </li>
               <li>
                 <a href="#">
-         
+
                   <span class="product">TShirt</span>
                 </a>
                 <span class="price">1245 F</span>
@@ -273,8 +275,10 @@ exit();
       };
     </script>
   </body>
-</html>
+
+  </html>
 
 
 </body>
+
 </html>

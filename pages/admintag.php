@@ -13,18 +13,18 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "admin") {
     header("location:../index.php");
     exit();
 }
-if(isset($_GET['id'])){
-    
+if (isset($_GET['id'])) {
+
     $acc = new admin($pdo);
     $acc->deletedescription($_GET["id"]);
     header("location: admintag.php");
-    }
-if(isset($_GET['id'])){
-    
+}
+if (isset($_GET['id'])) {
+
     $acc = new admin($pdo);
     $acc->deletetags($_GET["id"]);
     header("location: admintag.php");
-    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,9 +74,11 @@ if(isset($_GET['id'])){
                     </a>
                 </li>
 
+
+
                 <li>
-                    <a href="admentag.php">
-                        <i class="bx bx-coin-stack" class="active"></i>
+                    <a href="admintag.php" class="active">
+                        <i class="bx bx-grid-alt"></i>
                         <span class="links_name">tags te categories</span>
                     </a>
                 </li>
@@ -116,7 +118,7 @@ if(isset($_GET['id'])){
 
                         <?php
 
-                  
+
 
 
                         if (isset($_POST["submitp"])) {
@@ -142,35 +144,45 @@ if(isset($_GET['id'])){
                             <button type="submit" name="submitp">add categorie</button>
                         </form>
                         <table class="table table-striped table-bordered">
-    
-    
+
+
                             <thead>
                                 <tr class="table-header">
                                     <th class="column-name">Name</th>
                                     <th class="column-email">description</th>
-    
+
                                     <th class="column-status">created at</th>
                                     <th class="column-status">action</th>
                                 </tr>
                             </thead>
                             <tbody>
-    
+
                                 <?php
-    
+
                                 $acc = new admin($pdo);
-                                $acc->affichagedescription();
-                              
+                                $users = $acc->affichagedescription();
+                                foreach ($users as $user) {
+                                    echo '<tr class="row-user">';
+                                    echo '<td class="column-name">' . $user['name'] . '</td>';
+                                    echo '<td class="column-email">' . $user['description'] . '</td>';
+                                    echo '<td class="column-email">' . $user['created_at'] . '</td>';
+                                    echo '<td>
+                                    <a href="../pages/admintag.php?id=' . $user['category_id'] . '"class="act" >delete</a>
+                                    </td>';
+                                    echo '</tr>';
+                                }
+
                                 ?>
-    
-    
+
+
                             </tbody>
                         </table>
-                        </div>
-                        
                     </div>
+
+                </div>
             </div>
             </div>
-    
+
             <div class="home-content">
 
                 <div class="sales-boxes" style="justify-content: center;">
@@ -180,7 +192,7 @@ if(isset($_GET['id'])){
 
                         <?php
 
-                  
+
 
 
                         if (isset($_POST["submitt"])) {
@@ -203,8 +215,8 @@ if(isset($_GET['id'])){
                             <button type="submit" name="submitt">add tag</button>
                         </form>
                         <table class="table table-striped table-bordered">
-    
-    
+
+
                             <thead>
                                 <tr class="table-header">
                                     <th class="column-name">Name</th>
@@ -213,20 +225,30 @@ if(isset($_GET['id'])){
                                 </tr>
                             </thead>
                             <tbody>
-    
+
                                 <?php
-    
+
                                 $acc = new admin($pdo);
-                                $acc->affichagetags();
-                              
+                                $users=$acc->affichagetags();
+                                foreach ($users as $user) {
+                                    echo '<tr class="row-user">';
+                                    echo '<td class="column-name">' . $user['name'] . '</td>';
+                                    echo '<td class="column-email">' . $user['created_at'] . '</td>';
+                                    echo '<td>
+                                    <a href="../pages/admintag.php?id=' . $user['tag_id'] . '"class="act" >delete</a>
+                                    </td>';
+                        
+                                    echo '</tr>';
+                                }
+
                                 ?>
-    
-    
+
+
                             </tbody>
                         </table>
-                        </div>
-                        
                     </div>
+
+                </div>
             </div>
             </div>
         </section>

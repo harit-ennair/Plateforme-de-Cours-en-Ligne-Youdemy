@@ -2,7 +2,7 @@
 namespace Youcode\youdemy;
 
 include $_SERVER['DOCUMENT_ROOT'].'/Youdemy/vendor/autoload.php';
-use Youcode\youdemy\database;
+// use Youcode\youdemy\database;
 use Youcode\youdemy\user;
 
 
@@ -73,21 +73,23 @@ class admin extends user{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
-        foreach ($users as $user) {
-            echo '<tr class="row-user">';
-            echo '<td class="column-name">' . $user['name'] . '</td>';
-            echo '<td class="column-email">' . $user['description'] . '</td>';
-            echo '<td class="column-email">' . $user['created_at'] . '</td>';
+        return $users;
+        // foreach ($users as $user) {
+        //     echo '<tr class="row-user">';
+        //     echo '<td class="column-name">' . $user['name'] . '</td>';
+        //     echo '<td class="column-email">' . $user['description'] . '</td>';
+        //     echo '<td class="column-email">' . $user['created_at'] . '</td>';
       
 
 
-            echo '<td>
-            <a href="../pages/admintag.php?id=' . $user['category_id'] . '"class="act" >delete</a>
-            </td>';
+        //     echo '<td>
+        //     <a href="../pages/admintag.php?id=' . $user['category_id'] . '"class="act" >delete</a>
+        //     </td>';
 
-            echo '</tr>';
-        }
+        //     echo '</tr>';
+        // }
     }
+    
 
     public function deletedescription($category_id)
     {
@@ -112,19 +114,20 @@ class admin extends user{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
-        foreach ($users as $user) {
-            echo '<tr class="row-user">';
-            echo '<td class="column-name">' . $user['name'] . '</td>';
-            echo '<td class="column-email">' . $user['created_at'] . '</td>';
+        return $users;
+        // foreach ($users as $user) {
+        //     echo '<tr class="row-user">';
+        //     echo '<td class="column-name">' . $user['name'] . '</td>';
+        //     echo '<td class="column-email">' . $user['created_at'] . '</td>';
       
 
 
-            echo '<td>
-            <a href="../pages/admintag.php?id=' . $user['tag_id'] . '"class="act" >delete</a>
-            </td>';
+        //     echo '<td>
+        //     <a href="../pages/admintag.php?id=' . $user['tag_id'] . '"class="act" >delete</a>
+        //     </td>';
 
-            echo '</tr>';
-        }
+        //     echo '</tr>';
+        // }
     }
 
     public function deletetags($tag_id)
