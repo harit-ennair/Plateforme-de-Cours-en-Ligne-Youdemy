@@ -43,6 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $teacher->addCourse($title, $description, $content_type, $content, $teacher_id, $category_id, $tags);
 }
 
+if (isset($_GET['id'])) {
+
+  $acc = new teacher($pdo);
+  $acc->deletecourse($_GET["id"]);
+  header("location: teachercourses.php");
+}
 
 
 
@@ -232,6 +238,9 @@ if (!empty($courses)) {
       echo "<p><strong>Tags:</strong> " . $course['tags'] . "</p>";
       echo "<p><strong>Created At:</strong> " . $course['created_at'] . "</p>";
       echo "<p><strong>Status:</strong> " . $course['status'] . "</p>";
+      echo '<td>
+            <a href="../pages/teachercourses.php?id=' . $course['course_id'] . '"class="act" >delete</a>
+            </td>';
       echo "</div>";
   }
 

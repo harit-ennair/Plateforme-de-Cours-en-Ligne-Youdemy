@@ -48,10 +48,10 @@ class teacher extends user
                 Courses.content_type, 
                 Categories.name AS category 
                 FROM Courses
-                LEFT JOIN CourseTags ON Courses.course_id = CourseTags.course_id
-                LEFT JOIN Tags ON CourseTags.tag_id = Tags.tag_id
-                LEFT JOIN Categories ON Courses.category_id = Categories.category_id
-                LEFT JOIN users ON Courses.teacher_id = users.user_id  
+                JOIN CourseTags ON Courses.course_id = CourseTags.course_id
+                JOIN Tags ON CourseTags.tag_id = Tags.tag_id
+                JOIN Categories ON Courses.category_id = Categories.category_id
+                JOIN users ON Courses.teacher_id = users.user_id  
                 WHERE users.user_id = :teacher_id
                 GROUP BY Courses.course_id
 ";
@@ -64,22 +64,21 @@ class teacher extends user
         return $courses;
     }
 
+    public function deletecourse($course_id)
+    {
+
+        $sql = "DELETE FROM coursetags WHERE course_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $course_id);
+        $stmt->execute();
+
+
+        $sql = "DELETE FROM courses WHERE course_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $course_id);
+        $stmt->execute();
+    }
+
+
 }
-
-
-// SELECT Courses.course_id, 
-//        Courses.title, 
-//        Courses.description, 
-//        Courses.content, 
-//        Courses.status,  
-//        GROUP_CONCAT(Tags.name ORDER BY Tags.name) AS tags, 
-//        Courses.content_type, 
-//        Categories.name AS category,
-//        users.username
-// FROM Courses
-// LEFT JOIN CourseTags ON Courses.course_id = CourseTags.course_id
-// LEFT JOIN Tags ON CourseTags.tag_id = Tags.tag_id
-// LEFT JOIN Categories ON Courses.category_id = Categories.category_id
-// LEFT JOIN users ON Courses.user_id = Users.user_id  
-// GROUP BY Courses.course_id
 

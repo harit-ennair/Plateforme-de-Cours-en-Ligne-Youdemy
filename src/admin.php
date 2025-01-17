@@ -159,10 +159,10 @@ class admin extends user
                 Courses.content_type, 
                 Categories.name AS category
                 FROM Courses
-                LEFT JOIN CourseTags ON Courses.course_id = CourseTags.course_id
-                LEFT JOIN Tags ON CourseTags.tag_id = Tags.tag_id
-                LEFT JOIN Categories ON Courses.category_id = Categories.category_id
-                LEFT JOIN users ON Courses.teacher_id = users.user_id  
+                JOIN CourseTags ON Courses.course_id = CourseTags.course_id
+                JOIN Tags ON CourseTags.tag_id = Tags.tag_id
+                JOIN Categories ON Courses.category_id = Categories.category_id
+                JOIN users ON Courses.teacher_id = users.user_id  
                 GROUP BY Courses.course_id
                 ORDER BY users.email
                 
