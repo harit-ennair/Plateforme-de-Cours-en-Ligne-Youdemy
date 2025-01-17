@@ -21,6 +21,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "teacher") {
 
 
 
+$teacher_id = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $title = $_POST['title'];
@@ -60,8 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../public/cssadmine.css">
+  
   <link rel="stylesheet" href="../public/activation.css">
-
+  <link rel="stylesheet" href="../public/card.css">
 
 </head>
 
@@ -214,29 +216,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $teacher = new teacher($pdo);
 
-$courses = $teacher->getAllCoursesWithTags();
-
+$courses = $teacher->getAllCoursesWithTags($teacher_id);
 
 if (!empty($courses)) {
-    echo "<h1>All Courses</h1>";
-    echo "<div class='course-container'>";
+  echo "<h1>All Courses</h1>";
+  echo "<div class='course-container'>";
 
+  foreach ($courses as $course) {
+      echo "<div class='course-item'>";
+      echo "<h2>Course Title: " . $course['title'] . "</h2>";
+      echo "<a href='" . $course['content'] . "'><strong></strong> link</a>";
+      echo "<p><strong></strong> " . $course['content_type'] . "</p>";
+      echo "<p><strong>Description:</strong> " . $course['description'] . "</p>";
+      echo "<p><strong>Category:</strong> " . $course['category'] . "</p>";
+      echo "<p><strong>Tags:</strong> " . $course['tags'] . "</p>";
+      echo "<p><strong>Created At:</strong> " . $course['created_at'] . "</p>";
+      echo "<p><strong>Status:</strong> " . $course['status'] . "</p>";
+      echo "</div>";
+  }
 
-    foreach ($courses as $course) {
-        echo "<div class='course-item'>";
-        echo "<h2>Course Title: " . $course['title'] . "</h2>";
-        echo "<p>Description: " . $course['description'] . "</p>";
-        echo "<p>Content Type: " . $course['content_type'] . "</p>";
-        echo "<p>Content: " . $course['content'] . "</p>";
-        echo "<p>Tags: " . $course['tags'] . "</p>";
-        echo "<p>Category: " . $course['category'] . "</p>";
-        echo "<p>status : " . $course['status'] . "</p>";
-        echo "</div>";
-    }
-
-    echo "</div>";
+  echo "</div>";
 } else {
-    echo "<p>No courses found.</p>";
+  echo "<p class='no-courses'>No courses found.</p>";
 }
 
 ?>

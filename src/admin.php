@@ -1,20 +1,21 @@
 <?php
 namespace Youcode\youdemy;
 
-include $_SERVER['DOCUMENT_ROOT'].'/Youdemy/vendor/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/Youdemy/vendor/autoload.php';
 // use Youcode\youdemy\database;
 use Youcode\youdemy\user;
 
 
-class admin extends user{
+class admin extends user
+{
 
-    
-    
+
+
 
     public function affichage()
     {
 
-        $sql = "SELECT * FROM users WHERE role != 'admin' ORDER BY status"; 
+        $sql = "SELECT * FROM users WHERE role != 'admin' ORDER BY status";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
@@ -29,13 +30,13 @@ class admin extends user{
                     <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=suspended" class="act" >Disactive</a>
                     <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=panding" class="act">panding</a>
     
-                </td>'; 
+                </td>';
             } else if ($user['status'] == 'suspended') {
                 echo '<td>
                     <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=active" class="act">Active</a>
                     <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=panding" class="act">panding</a>
                 </td>';
-            }else  {
+            } else {
                 echo '<td>
                     <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=suspended" class="act" >Disactive</a>
                     <a href="../pages/adminpage.php?user_id=' . $user['user_id'] . '&activety=active" class="act">Active</a>
@@ -48,28 +49,29 @@ class admin extends user{
     {
         $userId = $user_id;
         $newactivety = $activety;
-        
+
         $sql = "UPDATE users SET status = :status WHERE user_id = :user_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':status' => $newactivety,
             ':user_id' => $userId
         ]);
-    
 
-    
+
+
     }
 
-    public function addcategories($name, $description) {
+    public function addcategories($name, $description)
+    {
 
- 
+
         $stmt = $this->pdo->prepare("INSERT INTO categories (name,description)VALUES(?,?)");
         $stmt->execute([$name, $description]);
 
     }
     public function affichagedescription()
     {
-        $sql = "SELECT * FROM categories;"; 
+        $sql = "SELECT * FROM categories;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
@@ -85,20 +87,21 @@ class admin extends user{
         //     echo '</tr>';
         // }
     }
-    
+
 
     public function deletedescription($category_id)
     {
-        
+
         $sql = "DELETE FROM categories WHERE category_id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $category_id);
         $stmt->execute();
     }
-    
-    public function addtags($name) {
 
- 
+    public function addtags($name)
+    {
+
+
         $stmt = $this->pdo->prepare("INSERT INTO tags (name)VALUES(?)");
         var_dump($stmt);
         $stmt->execute([$name]);
@@ -106,7 +109,7 @@ class admin extends user{
     }
     public function affichagetags()
     {
-        $sql = "SELECT * FROM tags;"; 
+        $sql = "SELECT * FROM tags;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
@@ -124,15 +127,90 @@ class admin extends user{
 
     public function deletetags($tag_id)
     {
-        
+
         $sql = "DELETE FROM tags WHERE tag_id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $tag_id);
         $stmt->execute();
     }
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function affichageCourses()
+    {
+        $sql = "SELECT users.username,users.email, Courses.course_id, Courses.title, Courses.description, Courses.content, Courses.created_at, Courses.status,  
+                GROUP_CONCAT(Tags.name ORDER BY Tags.name) AS tags, 
+                Courses.content_type, 
+                Categories.name AS category
+                FROM Courses
+                LEFT JOIN CourseTags ON Courses.course_id = CourseTags.course_id
+                LEFT JOIN Tags ON CourseTags.tag_id = Tags.tag_id
+                LEFT JOIN Categories ON Courses.category_id = Categories.category_id
+                LEFT JOIN users ON Courses.teacher_id = users.user_id  
+                GROUP BY Courses.course_id
+                ORDER BY users.email
+                
+";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $courses = $stmt->fetchAll();
+
+        foreach ($courses as $course) {
+            echo '<tr class="row-course">';
+            echo '<td class="column-title">' . $course['username'] . '</td>';
+            echo '<td class="column-title">' . $course['email'] . '</td>';
+            echo '<td class="column-title">' . $course['title'] . '</td>';
+            echo '<td class="column-description">' . $course['description'] . '</td>';
+            echo '<td class="column-tags">' . $course['tags'] . '</td>';
+            echo '<td class="column-category">' . $course['category'] . '</td>';
+            echo '<td class="column-status">' . $course['status'] . '</td>';
+
+            if ($course['status'] == 'active') {
+                echo '<td class="column-status active">
+                  
+                    <a href="../pages/adminpage.php?course_id=' . $course['course_id'] . '&activitys=panding" class="act">Pending</a>
+                </td>';
+            } else {
+                echo '<td>
+               
+                    <a href="../pages/adminpage.php?course_id=' . $course['course_id'] . '&activitys=active" class="act">Activate</a>
+                </td>';
+            }
+            echo '</tr>';
+        }
     }
-    
-    
-    
+    public function updateActivitycourse($course_id, $activity)
+    {
+        $courseId = $course_id;
+        $newActivity = $activity;
+
+        $sql = "UPDATE Courses SET status = :status WHERE course_id = :course_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':status' => $newActivity,
+            ':course_id' => $courseId
+        ]);
+    }
+
+
+
+}
+
+

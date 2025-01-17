@@ -25,6 +25,15 @@ if(isset($_GET['user_id']) && isset($_GET['activety'])){
 }
 
 
+if(isset($_GET['course_id']) && isset($_GET['activitys'])){
+  $ndb = new database;
+  $pdo = $ndb->getConnection();
+  $descative = new admin($pdo);
+  $descative->updateActivitycourse($_GET['course_id'],$_GET['activitys']);
+  header('location:http://localhost/youdemy/pages/adminpage.php');
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,6 +151,49 @@ if(isset($_GET['user_id']) && isset($_GET['activety'])){
                     </table>
 
             </div>
+        </div>
+
+        </div>
+
+
+
+        <div class="home-content">
+        <div class="sales-boxes" style="justify-content: center;">
+             <div class="recent-sales box">
+         
+             <table class="table table-striped table-bordered">
+
+
+                        <thead>
+                            <tr class="table-header">
+                              <th class="column-name">Name</th>
+                              <th class="column-email">email</th>
+                              <th class="column-email">title</th>
+                              <th class="column-status">description</th>
+                              <th class="column-status">tags</th>
+                              <th class="column-status">category</th>
+                              <th class="column-status">Status</th>
+                              <th class="column-status">action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                
+                                <?php
+          
+                          
+                                $ndb = new database;
+                                $pdo = $ndb->getConnection();
+                                $acc = new admin($pdo);  
+                                $acc->affichageCourses();  
+                            
+                                ?>
+
+
+                        </tbody>
+                    </table>
+
+            </div>
+        </div>
         </div>
       </div>
     </section>
