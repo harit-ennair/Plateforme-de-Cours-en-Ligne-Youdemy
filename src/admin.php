@@ -79,13 +79,9 @@ class admin extends user{
         //     echo '<td class="column-name">' . $user['name'] . '</td>';
         //     echo '<td class="column-email">' . $user['description'] . '</td>';
         //     echo '<td class="column-email">' . $user['created_at'] . '</td>';
-      
-
-
         //     echo '<td>
         //     <a href="../pages/admintag.php?id=' . $user['category_id'] . '"class="act" >delete</a>
         //     </td>';
-
         //     echo '</tr>';
         // }
     }
@@ -119,13 +115,9 @@ class admin extends user{
         //     echo '<tr class="row-user">';
         //     echo '<td class="column-name">' . $user['name'] . '</td>';
         //     echo '<td class="column-email">' . $user['created_at'] . '</td>';
-      
-
-
         //     echo '<td>
         //     <a href="../pages/admintag.php?id=' . $user['tag_id'] . '"class="act" >delete</a>
         //     </td>';
-
         //     echo '</tr>';
         // }
     }
