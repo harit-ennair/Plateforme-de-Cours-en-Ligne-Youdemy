@@ -210,10 +210,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
       </div>
       </div>
+<?php
+
+$teacher = new teacher($pdo);
+
+$courses = $teacher->getAllCoursesWithTags();
 
 
+if (!empty($courses)) {
+    echo "<h1>All Courses</h1>";
+    echo "<div class='course-container'>";
 
 
+    foreach ($courses as $course) {
+        echo "<div class='course-item'>";
+        echo "<h2>Course Title: " . $course['title'] . "</h2>";
+        echo "<p>Description: " . $course['description'] . "</p>";
+        echo "<p>Content Type: " . $course['content_type'] . "</p>";
+        echo "<p>Content: " . $course['content'] . "</p>";
+        echo "<p>Tags: " . $course['tags'] . "</p>";
+        echo "<p>Category: " . $course['category'] . "</p>";
+        echo "<p>status : " . $course['status'] . "</p>";
+        echo "</div>";
+    }
+
+    echo "</div>";
+} else {
+    echo "<p>No courses found.</p>";
+}
+
+?>
 
 
 

@@ -61,6 +61,7 @@ form {
   /* Input and textarea styling */
   input[type="name"],
   input[type="text"],
+  input[type="url"],
   textarea,
   select,
   input[type="file"] {

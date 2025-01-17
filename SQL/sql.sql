@@ -55,6 +55,8 @@ CREATE TABLE Courses (
     FOREIGN KEY (teacher_id) REFERENCES Users(user_id),
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
     content_type ENUM('PDF', 'Video')
+    status ENUM('active','panding') DEFAULT 'panding'
+
 );
 
 -- Table de relation many-to-many entre les cours et les tags
