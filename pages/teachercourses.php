@@ -241,6 +241,9 @@ if (!empty($courses)) {
       echo '<td>
             <a href="../pages/teachercourses.php?id=' . $course['course_id'] . '"class="act" >delete</a>
             </td>';
+      echo '<td>
+            <a href="../pages/edetecourse.php?id=' . $course['course_id'] . '"class="act" >edete</a>
+            </td>';
       echo "</div>";
   }
 

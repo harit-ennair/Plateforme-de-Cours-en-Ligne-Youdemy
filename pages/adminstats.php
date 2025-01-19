@@ -67,7 +67,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "admin") {
             <span class="links_name">tags te categories</span>
           </a>
         </li>
- 
+
 
         <li>
           <a href="adminpage.php">

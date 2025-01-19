@@ -30,6 +30,29 @@ class teacher extends user
         }
     }
 
+    public function updateCourse($course_id, $title, $description, $content_type, $content, $teacher_id, $category_id, $tags)
+{
+   
+    $sql = "UPDATE courses SET title = ?, description = ?, content = ?, teacher_id = ?, category_id = ?, content_type = ? 
+            WHERE course_id = ?";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$title, $description, $content, $teacher_id, $category_id, $content_type, $course_id]);
+
+ 
+    if (!empty($tags)) {
+     
+        $sqlDeleteTags = "DELETE FROM coursetags WHERE course_id = ?";
+        $stmtDelete = $this->pdo->prepare($sqlDeleteTags);
+        $stmtDelete->execute([$course_id]);
+
+
+        foreach ($tags as $tag_id) {
+            $this->addTagToCourse($course_id, $tag_id);
+        }
+    }
+}
+
+
 
     private function addTagToCourse($course_id, $tag_id)
     {
