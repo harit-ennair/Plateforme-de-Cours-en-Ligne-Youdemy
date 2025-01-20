@@ -71,26 +71,25 @@ class admin extends user
     }
     public function affichagedescription()
     {
-        $sql = "SELECT * FROM categories;";
+        $sql = "SELECT * FROM categories
+        WHERE name != 'null';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
         return $users;
-        // foreach ($users as $user) {
-        //     echo '<tr class="row-user">';
-        //     echo '<td class="column-name">' . $user['name'] . '</td>';
-        //     echo '<td class="column-email">' . $user['description'] . '</td>';
-        //     echo '<td class="column-email">' . $user['created_at'] . '</td>';
-        //     echo '<td>
-        //     <a href="../pages/admintag.php?id=' . $user['category_id'] . '"class="act" >delete</a>
-        //     </td>';
-        //     echo '</tr>';
-        // }
+
     }
 
 
     public function deletedescription($category_id)
     {
+
+        $sql = "UPDATE courses SET category_id = 11 WHERE category_id = :category_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':category_id', $category_id);
+        $stmt->execute();
+
+
 
         $sql = "DELETE FROM categories WHERE category_id = :id";
         $stmt = $this->pdo->prepare($sql);
@@ -114,19 +113,16 @@ class admin extends user
         $stmt->execute();
         $users = $stmt->fetchAll();
         return $users;
-        // foreach ($users as $user) {
-        //     echo '<tr class="row-user">';
-        //     echo '<td class="column-name">' . $user['name'] . '</td>';
-        //     echo '<td class="column-email">' . $user['created_at'] . '</td>';
-        //     echo '<td>
-        //     <a href="../pages/admintag.php?id=' . $user['tag_id'] . '"class="act" >delete</a>
-        //     </td>';
-        //     echo '</tr>';
-        // }
+   
     }
 
     public function deletetags($tag_id)
     {
+
+        $sql = "DELETE FROM coursetags WHERE tag_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $tag_id);
+        $stmt->execute();
 
         $sql = "DELETE FROM tags WHERE tag_id = :id";
         $stmt = $this->pdo->prepare($sql);
