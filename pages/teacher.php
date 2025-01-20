@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/youdemy/vendor/autoload.php';
 use Youcode\youdemy\database;
 
 $ndb = new database;
-// $pdo = $ndb->getConnection();
+
 
 if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "teacher") {
 

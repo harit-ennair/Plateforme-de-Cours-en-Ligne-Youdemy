@@ -36,16 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   header("location: teachercourses.php");
 }
 
-// if (isset($_GET['id'])) {
-
-//   $acc = new teacher($pdo);
-//   $acc->deletecourse($_GET["id"]);
-//   header("location: teachercourses.php");
-// }
-
-
-
-
 
 ?>
 
@@ -104,10 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
               <button type="submit">Submit</button>
             </form>
-
-
-
-
 
 </body>
 </html>

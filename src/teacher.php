@@ -30,6 +30,9 @@ class teacher extends user
         }
     }
 
+
+    
+
     public function updateCourse($course_id, $title, $description, $content_type, $content, $teacher_id, $category_id, $tags)
 {
    

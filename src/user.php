@@ -86,7 +86,7 @@ public function loginFunc($email,$password){
         }else if($myuser["role"]=="teacher"){
             header("location:./pages/teacher.php");
         }else{
-            header("location:./pages/.php");
+            header("location:./pages/student.php");
         }
         }
     }
