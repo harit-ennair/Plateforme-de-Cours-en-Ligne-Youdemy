@@ -100,6 +100,29 @@ public function removeFromCourse($student_id, $course_id) {
 
     
 
-    
+public function getCourseDetails($course_id) {
+
+    $stmt = $this->pdo->prepare("SELECT 
+                                    Courses.course_id, 
+                                    Courses.title, 
+                                    Courses.description, 
+                                    Courses.content_type, 
+                                    Courses.content, 
+                                    Courses.created_at, 
+                                    Courses.status, 
+                                    GROUP_CONCAT(Tags.name ORDER BY Tags.name) AS tags, 
+                                    Categories.name AS category
+                                  FROM Courses
+                                  JOIN CourseTags ON Courses.course_id = CourseTags.course_id
+                                  JOIN Tags ON CourseTags.tag_id = Tags.tag_id
+                                  JOIN Categories ON Courses.category_id = Categories.category_id
+                                  WHERE Courses.course_id = :course_id
+                                  GROUP BY Courses.course_id");
+    $stmt->bindParam(':course_id', $course_id);
+    $stmt->execute();
+
+    return $stmt->fetch();
+}
+
 
 }

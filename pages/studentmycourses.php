@@ -130,7 +130,7 @@ if (!empty($courses)) {
         echo "<p><strong>Tags:</strong> " . $course['tags'] . "</p>";
         echo "<p><strong>Created At:</strong> " . $course['created_at'] . "</p>";
         echo "<div class='course-actions'>";
-        echo '<a href="../pages/teachercourses.php?id=' . $course['course_id'] . '" class="act">View</a>';
+        echo '<a href="../pages/desplay.php?id=' . $course['course_id'] . '" class="act">View</a>';
         echo '<a href="?course_id=' . $course['course_id'] . '" class="act" >Remove</a>';
         
         echo "</div>";  

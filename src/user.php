@@ -81,11 +81,11 @@ public function loginFunc($email,$password){
 
 
         if ($myuser["role"]=="admin") {
-            header("location:./pages/adminstats.php");
+            header("location:./adminstats.php");
         }else if($myuser["role"]=="teacher"){
-            header("location:./pages/teacher.php");
+            header("location:./teacher.php");
         }else{
-            header("location:./pages/student.php");
+            header("location:./student.php");
         }
         }
     }
