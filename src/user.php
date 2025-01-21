@@ -14,9 +14,8 @@ protected $username;
 protected $email;
 protected $password;
 protected $role;
-
-protected $pdo;
 protected $activety;
+protected $pdo;
 
 public function __construct($pdo) {
     $this->pdo = $pdo;

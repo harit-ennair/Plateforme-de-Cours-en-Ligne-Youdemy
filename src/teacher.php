@@ -90,6 +90,9 @@ class teacher extends user
         return $courses;
     }
 
+
+    
+
     public function deletecourse($course_id)
     {
 

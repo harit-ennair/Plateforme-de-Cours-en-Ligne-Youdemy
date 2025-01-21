@@ -30,9 +30,9 @@ $pdo = $ndb->getConnection();
     <meta charset="UTF-8" />
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../public/cssadmine.css">
-    <link rel="stylesheet" href="../public/activation.css">
-    <link rel="stylesheet" href="../public/card.css">
-
+  
+  <link rel="stylesheet" href="../public/activation.css">
+  <link rel="stylesheet" href="../public/card.css">
 
     <!-- Boxicons CDN Link -->
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
@@ -84,12 +84,11 @@ $pdo = $ndb->getConnection();
 
             <form class="custom-search-form" method="GET">
 
-        <input type="text" name="query" placeholder="Search courses..." />
-        <button type="submit">
-            <i class="bx bx-search"></i>
-        </button>
-    <
-</form>
+                <input type="text" name="query" placeholder="Search courses..." />
+                <button type="submit">
+                    <i class="bx bx-search"></i>
+                </button>
+                < </form>
 
 
 
@@ -109,15 +108,27 @@ $pdo = $ndb->getConnection();
 
                     <?php
 
-                        if (isset($_GET['query'])) {
-                            $search = $_GET['query'];  
-                        } else {
-                            $search = '';  
-                        }
+
+$student = new student($pdo);
+                    if (isset($_GET['id'])) {
+                        $course_id = (int) $_GET['id'];
+                        $student_id = $_SESSION['user_id'];
+
+                    $student->enrollInCourse($student_id, $course_id);
+                    }
+                           
+                   
 
 
-                    $student = new student($pdo);
 
+                    if (isset($_GET['query'])) {
+                        $search = $_GET['query'];
+                    } else {
+                        $search = '';
+                    }
+
+
+                 
                     $page = isset($_GET['page']) ? (int) $_GET['page'] : 0;
 
                     $courses = $student->getAllCoursesWithPagination($page, $search);
@@ -134,8 +145,8 @@ $pdo = $ndb->getConnection();
                             echo "<p><strong>Tags:</strong> " . $course['tags'] . "</p>";
                             echo "<p><strong>Created At:</strong> " . $course['created_at'] . "</p>";
                             echo '<td>
-                <a href="../pages/.php?id=' . $course['course_id'] . '"class="act" >add to my courses</a>
-              </td>';
+                           <a href="?id=' . $course['course_id'] . '" class="act">Add to my courses</a>
+                          </td>';
                             echo "</div>";
                         }
 
@@ -146,23 +157,7 @@ $pdo = $ndb->getConnection();
                     }
 
 
-
-
-
-
-
-
                     ?>
-
-
-
-
-
-
-
-
-
-
 
 
                 </div>
@@ -173,13 +168,15 @@ $pdo = $ndb->getConnection();
 
         <?php
         echo "<div class='pagination'>";
+
         if ($page > 0) {
-            echo "<a href='?page=" . ($page - 1) . "'>Previous</a>";
+            echo "<a href='?page=" . ($page - 1) . ($search ? '&' . $search : '') . "'>Previous</a>";
         }
 
-        echo "<a href='?page=" . ($page + 1) . "'>Next</a>";
+        echo "<a href='?page=" . ($page + 1) . ($search ? '&' . $search : '') . "'>Next</a>";
 
         echo "</div>";
+
 
 
         ?>
