@@ -1,95 +1,121 @@
-/* Resetting some basic styles */
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body and overall background */
+/* Body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
     line-height: 1.6;
-    background-color: #f4f4f9;
-    color: #333;
-    padding: 20px;
 }
 
-/* Main container for content */
+/* Container to center the content */
 .container {
-    width: 80%;
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
-h2 {
-    font-size: 24px;
-    color: #333;
+/* Course Info styling */
+.course-info {
+    margin-bottom: 30px;
+}
+
+/* Course Title */
+.course-info h2 {
+    font-size: 2.5rem;
+    color: #2a76d2;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Description and other details */
+.course-info p {
+    font-size: 1.1rem;
+    line-height: 1.8;
     margin-bottom: 15px;
-    text-align: center;
-}
-
-/* Paragraphs */
-p {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-/* Strong texts for labels */
-strong {
     color: #555;
 }
 
-/* Styling the course info section */
-.course-info {
+/* Highlight the labels */
+.course-info strong {
+    font-weight: 600;
+    color: #444;
+}
+
+/* Category and Tags Section */
+.course-info .tags {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-top: 15px;
 }
 
-/* Adding a card-like structure to the content display */
-.card {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
+.course-info .tags span {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 1rem;
 }
 
-/* Style the content type */
-.content-type {
+/* Created At styling */
+.course-info p.created-at {
+    font-size: 1rem;
+    color: #777;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+/* Error or invalid messages */
+p.error {
+    color: #ff4d4d;
     font-weight: bold;
-    color: #3e7c7b;
-}
-
-/* Links and actions */
-a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #0056b3;
-}
-
-/* Footer */
-footer {
     text-align: center;
-    margin-top: 30px;
-    font-size: 14px;
-    color: #666;
+    font-size: 1.2rem;
+    margin-top: 20px;
 }
 
-/* Add some space between the elements */
-hr {
-    border: 0;
-    height: 1px;
-    background: #ddd;
-    margin: 20px 0;
+/* Buttons */
+button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .course-info h2 {
+        font-size: 2rem;
+    }
+
+    .course-info p {
+        font-size: 1rem;
+    }
+
+    .course-info .tags span {
+        font-size: 0.9rem;
+    }
 }
